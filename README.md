@@ -12,7 +12,7 @@
 >
 > \*Corresponding author: `wangf3014@gmail.com`
 
-> 🚧 **Coming soon:** code, checkpoints, and the demo will be released in ~10 days.
+> 🚧 **Coming soon:** code, checkpoints, and the demo will be released around June 20.
 
 ---
 
