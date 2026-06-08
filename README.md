@@ -9,8 +9,6 @@
 > Timing Yang¹, Predrag Neskovic¹, Jansen Seheult², Wenchao Han², Anand Bhattad¹, Alan Yuille¹, Feng Wang¹\*
 >
 > ¹ Johns Hopkins University &nbsp;&nbsp; ² Mayo Clinic
->
-> \*Corresponding author: `wangf3014@gmail.com`
 
 > 🚧 **Coming soon:** code, checkpoints, and the demo will be released around June 20.
 
