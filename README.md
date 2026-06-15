@@ -1,6 +1,6 @@
-# RATS! Patches Talk Through Registers
+# RATS! Patches Talk Through Registers: Emergent Parts in Register Attention Transformers
 
-### Emergent Parts in Register Attention Transformers
+### 
 
 [![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b.svg)](https://arxiv.org/pdf/2606.14701v1)
 [![Model](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Checkpoint-yellow)](https://huggingface.co/yangtiming/RATS)
@@ -8,7 +8,7 @@
 
 > Timing Yang, Predrag Neskovic, Jansen Seheult, Wenchao Han, Anand Bhattad, Alan Yuille, Feng Wang\*
 
-> 🚧 **Coming soon:** code, checkpoints, and the demo will be released around June 30.
+🚧 **Coming soon:** code, checkpoints, and the demo will be released around June 30.
 
 ---
 
