@@ -2,7 +2,7 @@
 
 ### Emergent Parts in Register Attention Transformers
 
-[![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b.svg)](https://github.com/yangtiming/RATS)
+[![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b.svg)](https://arxiv.org/pdf/2606.14701v1)
 [![Model](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Checkpoint-yellow)](https://huggingface.co/yangtiming/RATS)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Demo-blue)](https://huggingface.co/spaces/yangtiming/RATS)
 
@@ -94,12 +94,14 @@ pip install -r requirements.txt
 ## Citation
 
 ```bibtex
-@article{yang2026rats,
-  title   = {RATS! Patches Talk Through Registers: Emergent Parts in Register Attention Transformers},
-  author  = {Yang, Timing and Neskovic, Predrag and Seheult, Jansen and Han, Wenchao
-             and Bhattad, Anand and Yuille, Alan and Wang, Feng},
-  journal = {arXiv preprint arXiv:XXXX.XXXXX},
-  year    = {2026}
+@misc{yang2026ratspatchestalkregisters,
+      title={RATS! Patches Talk Through Registers: Emergent Parts in Register Attention Transformers}, 
+      author={Timing Yang and Predrag Neskovic and Jansen Seheult and Wenchao Han and Anand Bhattad and Alan Yuille and Feng Wang},
+      year={2026},
+      eprint={2606.14701},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2606.14701}, 
 }
 ```
 
