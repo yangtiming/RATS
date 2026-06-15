@@ -6,9 +6,7 @@
 [![Model](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Checkpoint-yellow)](https://huggingface.co/yangtiming/RATS)
 [![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Demo-blue)](https://huggingface.co/spaces/yangtiming/RATS)
 
-> Timing Yang¹, Predrag Neskovic¹, Jansen Seheult², Wenchao Han², Anand Bhattad¹, Alan Yuille¹, Feng Wang¹\*
->
-> ¹ Johns Hopkins University &nbsp;&nbsp; ² Mayo Clinic
+> Timing Yang, Predrag Neskovic, Jansen Seheult, Wenchao Han, Anand Bhattad, Alan Yuille, Feng Wang\*
 
 > 🚧 **Coming soon:** code, checkpoints, and the demo will be released around June 30.
 
