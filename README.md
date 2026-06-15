@@ -10,7 +10,7 @@
 >
 > ¹ Johns Hopkins University &nbsp;&nbsp; ² Mayo Clinic
 
-> 🚧 **Coming soon:** code, checkpoints, and the demo will be released around June 20.
+> 🚧 **Coming soon:** code, checkpoints, and the demo will be released around June 30.
 
 ---
 
