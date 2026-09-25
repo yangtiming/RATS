@@ -1,4 +1,4 @@
-# RATS! Patches Talk Through Registers: Emergent Parts in Register Attention Transformers
+# [NeurIPS 2026] RATS! Patches Talk Through Registers: Emergent Parts in Register Attention Transformers
 
 ### 
 
