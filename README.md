@@ -3,12 +3,10 @@
 ### 
 
 [![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b.svg)](https://arxiv.org/pdf/2606.14701v1)
-[![Model](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Checkpoint-yellow)](https://huggingface.co/yangtiming/RATS)
-[![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Demo-blue)](https://huggingface.co/spaces/yangtiming/RATS)
+[![Model](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Checkpoint-yellow)](https://huggingface.co/TimingYang/RATS)
+[![Demo](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Demo-blue)](https://huggingface.co/spaces/TimingYang/RATS)
 
 > Timing Yang, Predrag Neskovic, Jansen Seheult, Wenchao Han, Anand Bhattad, Alan Yuille, Feng Wang\*
-
-🚧 **Coming soon:** code, checkpoints, and the demo will be released around June 30.
 
 ---
 
@@ -89,6 +87,94 @@ cd RATS
 pip install -r requirements.txt
 ```
 
+Core: PyTorch, torchvision, numpy, scipy, matplotlib, pillow.
+Part retrieval additionally needs scikit-learn + tqdm.
+
+## Repository layout
+
+```
+RATS/
+├── vision_transformer.py        # RATS / region-ViT backbone (L→N→N→L register attention)
+├── utils.py  hubconf.py         # DINO utilities
+├── main_dino.py                 # self-supervised training entry
+├── rats_iter.py                 # recursive decompose → regroup (L1→Ld + similarity grouping)
+├── draw_dominant_map.py         # per-patch dominant register/head maps
+├── rats_partwhole.py            # head→register part/whole probe
+├── extract_teacher.py           # pull the teacher weights out of a full checkpoint
+├── scripts/                       # runnable entry points (self-locating)
+│   ├── run_train_base.sh          #   train ViT-Base backbone  (N=192, 16/head)
+│   ├── run_train_small.sh         #   train ViT-Small backbone (N=96,  16/head)
+│   ├── run_train_dict.sh          #   train the register dictionary (frozen backbone)
+│   ├── run_infer_rats.sh          #   RATS decomposition figures
+│   └── run_infer_dominant_map.sh  #   dominant-map figures
+├── retrieval_learnable/           # part retrieval (PartImageNet): demo_topk.py + run_base_dict4096.sh
+└── output/                      # all run outputs land here (git-ignored)
+    ├── <arch>_ps16_.../         #   training checkpoints
+    ├── rats_iter/               #   run_infer_rats.sh figures
+    └── dominant_map/            #   run_infer_dominant_map.sh figures
+```
+
+## Pretrained weights
+
+Teacher checkpoints (backbone + head), saved every 20 epochs, are on the Hub at
+[**TimingYang/RATS**](https://huggingface.co/TimingYang/RATS):
+
+| variant | arch | embed | registers (per head) |
+|---------|------|-------|----------------------|
+| `base/`  | `region_vit_base`  | 768 | 192 (16 × 12 heads)
+| `small/` | `region_vit_small` | 384 | 96  (16 × 6 heads) 
+
+```python
+import torch
+from huggingface_hub import hf_hub_download
+import vision_transformer as vits
+
+ckpt = hf_hub_download("TimingYang/RATS", "base/checkpoint_teacher_ep00xx.pth")  # released base
+state = torch.load(ckpt, map_location="cpu")["teacher"]
+state = {k.replace("module.", "").replace("backbone.", ""): v for k, v in state.items()}
+
+model = vits.region_vit_base(patch_size=16, num_register_tokens=192,
+                             use_cross_attn=True, num_reg_for_loss_per_head=16)
+model.load_state_dict(state, strict=False)   # head.* keys unused for features
+model.eval()
+```
+
+## Usage
+
+Paths in the `run_*.sh` scripts auto-detect the repo location; edit the data
+paths (`./data/imagenet`, `./data/PartImageNet`) or symlink your datasets there.
+
+**Train the backbone**
+```bash
+bash scripts/run_train_base.sh      # or run_train_small.sh
+```
+
+**Train the register dictionary** (freezes the pretrained backbone)
+```bash
+bash scripts/run_train_dict.sh
+```
+
+**RATS decomposition** — recursive decompose → regroup, one figure per image
+(`output/rats_iter/`):
+```bash
+# put a checkpoint_teacher.pth at the repo root and images in demo_image1/
+bash scripts/run_infer_rats.sh                           # all images in demo_image1/
+MERGE_SIM=0.9 bash scripts/run_infer_rats.sh img.png     # one image, tune the grouping threshold
+```
+
+**Dominant maps** — color each patch by its dominant register/head
+(`output/dominant_map/`):
+```bash
+bash scripts/run_infer_dominant_map.sh
+```
+
+**Part retrieval** (learned dictionary, PartImageNet) — build the codebook, match it
+to PartImageNet parts, and evaluate part purity / decomposition:
+```bash
+bash retrieval_learnable/run_base_dict4096.sh              # auto-downloads backbone + codebook
+MAX_IMAGES=XXXX bash retrieval_learnable/run_base_dict4096.sh   # quick smoke run
+```
+
 ## Citation
 
 ```bibtex
@@ -103,6 +189,7 @@ pip install -r requirements.txt
 }
 ```
 
-## License
+## License & acknowledgement
 
-MIT
+Released under the Apache-2.0 License. Built on
+[facebookresearch/dino](https://github.com/facebookresearch/dino).

@@ -1,0 +1,12 @@
+# Core (training, RATS decomposition, dominant maps)
+torch>=2.0
+torchvision>=0.15
+numpy>=1.24,<2
+scipy>=1.10
+matplotlib>=3.7
+pillow>=9.0
+huggingface_hub>=0.23   # inference scripts auto-download the released weights
+
+# Part-retrieval (retrieval_learnable/demo_topk.py)
+scikit-learn>=1.1
+tqdm>=4.60

@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+
+# Weights (fetch from the Hugging Face Hub — see README)
+*.pth
+*.pt
+*.ckpt
+
+# Datasets / released weights (mounted or symlinked locally)
+data/
+released_ckpt/
+
+# Run outputs (checkpoints, RATS figures, dominant maps)
+output/
+
+# Logs
+slurm-*.out
+*.log
+
+# OS / editor
+.DS_Store
+._*
+.idea/
+.vscode/
